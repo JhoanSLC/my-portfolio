@@ -1,11 +1,12 @@
+import React from "react";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Navbar } from "./components/Navbar";
-import { HeroSection } from "./components/HeroSection";
-import { AboutMeSection } from "./components/AboutMeSection";
-import { LanguageProvider } from "./components/LanguageContext";
+import { Navbar } from "./Navbar";
+import { HeroSection } from "./HeroSection";
+import { AboutMeSection } from "./AboutMeSection";
+import { LanguageProvider } from "./LanguageContext";
 
-function App() {
+export const AboutPage = () => {
   const [mode, setMode] = useState("dark");
 
   useEffect(() => {
@@ -23,7 +24,6 @@ function App() {
   const toggleMode = () => {
     setMode((prevMode) => (prevMode === "light" ? "dark" : "light"));
   };
-
   return (
     <LanguageProvider>
       <AnimatePresence>
@@ -43,6 +43,4 @@ function App() {
       </AnimatePresence>
     </LanguageProvider>
   );
-}
-
-export default App;
+};

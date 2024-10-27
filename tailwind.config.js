@@ -10,7 +10,8 @@ export default {
       grisClaro: '#C0C0C0',
       customWhite: '#FFFFFF', // Asegúrate de que este sea blanco puro
       dark: '#1A1A1A',
-      light: '#F8F8F8', 
+      light: '#F8F8F8',
+      textWhite: '#babab4',
       // Agregar colores por defecto para todos los modos
       white: '#FFFFFF', // Blanco puro
       black: '#000000', // Negro puro

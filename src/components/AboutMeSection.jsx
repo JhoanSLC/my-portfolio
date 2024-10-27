@@ -1,39 +1,79 @@
-import { useLanguage } from "./LanguageContext"; // Importa el contexto de idioma
+import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
+import { useLanguage } from "./LanguageContext";
 
 export const AboutMeSection = ({ mode }) => {
-  const { t } = useLanguage(); // Usa el contexto de idioma
+  const { t } = useLanguage();
 
   return (
-    <div
-      className={`flex items-center justify-center h-screen p-6 ${
-        mode === "light" ? "bg-white text-black" : "bg-grisOscuro text-light"
+    <motion.div
+      id="aboutMeSection"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+      className={`flex items-center justify-center min-h-screen p-6 ${
+        mode === "light"
+          ? "bg-grisClaro text-grisOscuro"
+          : "bg-dark text-doradoClaro"
       }`}
-      style={{ fontFamily: "Lora, serif" }}
     >
-      <div className="flex items-center max-w-5xl mx-auto">
-        {/* Imagen centrada dentro de un contenedor cuadrado */}
-        <div className="flex-shrink-0 w-80 h-80 bg-gray-200 dark:bg-gray-800 rounded-lg shadow-lg flex items-center justify-center overflow-hidden">
+      <div className="flex flex-col md:flex-row items-center max-w-6xl mx-auto gap-12">
+        <motion.div
+          className={`flex-shrink-0 w-64 h-64 md:w-80 md:h-80 ${
+            mode === "light" ? "bg-white" : "bg-grisOscuro"
+          } rounded-lg shadow-2xl overflow-hidden`}
+          initial={{ scale: 0.8, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ delay: 0.2, duration: 0.5 }}
+        >
           <img
             src="fotoJhoanAboutMe.jpg"
             alt="Foto de Jhoan"
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover object-top transition-transform duration-300 hover:scale-110"
           />
-        </div>
+        </motion.div>
 
-        {/* Contenedor del texto y botón */}
-        <div className="ml-10 flex flex-col justify-center">
-          <h2 className="text-5xl font-bold mb-4">{t("about_me_title")}</h2>
-          <p className="text-lg mb-6 leading-relaxed max-w-xl">
-            {t("about_me_description")}
-          </p>
-          <button
-            className="px-6 py-3 bg-[#D4AF37] text-white font-semibold rounded-lg shadow-md hover:bg-yellow-500 transition duration-300 self-start"
-            style={{ fontFamily: "Lora, serif" }}
+        <motion.div
+          className="flex flex-col justify-center max-w-xl"
+          initial={{ y: 50, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.4, duration: 0.5 }}
+        >
+          <motion.h2
+            className={`text-4xl md:text-5xl font-bold mb-6 ${
+              mode === "light" ? "text-black" : "text-dorado"
+            }`}
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.5, duration: 0.5 }}
           >
-            {t("know_more")}
-          </button>
-        </div>
+            {t("about_me_title")}
+          </motion.h2>
+          <motion.p
+            className={`text-lg mb-8 leading-relaxed ${
+              mode === "light" ? "text-grisOscuro" : "text-textWhite"
+            }`}
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.6, duration: 0.5 }}
+          >
+            {t("about_me_description")}
+          </motion.p>
+          <Link to="/about" className="self-start">
+            <motion.button
+              className={`px-8 py-3 ${
+                mode === "light"
+                  ? "bg-grisOscuro text-white hover:bg-black"
+                  : "bg-doradoClaro text-dark hover:bg-dorado"
+              } font-semibold rounded-lg shadow-md transition duration-300 text-lg`}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              {t("know_more")}
+            </motion.button>
+          </Link>
+        </motion.div>
       </div>
-    </div>
+    </motion.div>
   );
 };

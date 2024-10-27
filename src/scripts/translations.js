@@ -28,7 +28,7 @@ export const translations = {
       projects: "Proyectos",
       contact: "Contáctame",
       about_me_title: "¿Quién soy?",
-      about_me_description: "Desarrollador full-stack con un enfoque en el back-end, apasionado por crear soluciones eficientes. Tengo experiencia en el desarrollo de aplicaciones con Python y Java, y en el uso de Spring Boot para construir aplicaciones robustas y de alto rendimiento.",
+      about_me_description: "Desarrollador especializado en backend con una creciente pasión por el desarrollo de software acompañado de una gran habilidad de aprendizaje, además de competencias que me permiten mantener una buena relación con las personas con las que trabajo. Con el objetivo de convertirme en un experimentado senior",
       know_more: "Saber más...",
       
     },
