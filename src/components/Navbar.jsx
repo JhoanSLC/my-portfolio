@@ -2,12 +2,12 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Globe, Sun, Moon, ArrowLeft } from "lucide-react";
 import { useLanguage } from "./LanguageContext";
-import { Link, useLocation } from "react-router-dom"; // Asegúrate de importar Link y useLocation
+import { Link, useLocation } from "react-router-dom";
 
 export const Navbar = ({ mode, toggleMode }) => {
   const { language, setLanguage, t } = useLanguage();
   const [languageMenuOpen, setLanguageMenuOpen] = useState(false);
-  const location = useLocation(); // Obtén la ubicación actual
+  const location = useLocation(); // Obtiene la ubicación actual
 
   const toggleLanguageMenu = () => {
     setLanguageMenuOpen(!languageMenuOpen);
@@ -37,63 +37,67 @@ export const Navbar = ({ mode, toggleMode }) => {
           className={`text-transparent bg-clip-text ${
             mode === "light"
               ? "bg-gradient-to-r from-grisOscuro to-dorado"
-              : "bg-gradient-to-r from-doradoClaro to-dorado"
+              : "bg-gradient-to-r from-textWhite to-dorado"
           }`}
         >
           {"{JhoanSLC}"}
         </span>
       </motion.div>
-      <div className="hidden md:flex items-center gap-8 font-semibold">
-        {/* Enlaces de navegación */}
-        <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-          <a
-            href="#aboutMeSection"
-            className={`cursor-pointer transition-all duration-300 ${
-              mode === "light"
-                ? "text-grisOscuro hover:text-dorado focus:text-dorado"
-                : "text-doradoClaro hover:text-dorado focus:text-dorado"
-            } focus:outline-none focus:underline`}
-          >
-            {t("about")}
-          </a>
-        </motion.div>
-        <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-          <a
-            href="#services"
-            className={`cursor-pointer transition-all duration-300 ${
-              mode === "light"
-                ? "text-grisOscuro hover:text-dorado focus:text-dorado"
-                : "text-doradoClaro hover:text-dorado focus:text-dorado"
-            } focus:outline-none focus:underline`}
-          >
-            {t("services")}
-          </a>
-        </motion.div>
-        <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-          <a
-            href="#projects"
-            className={`cursor-pointer transition-all duration-300 ${
-              mode === "light"
-                ? "text-grisOscuro hover:text-dorado focus:text-dorado"
-                : "text-doradoClaro hover:text-dorado focus:text-dorado"
-            } focus:outline-none focus:underline`}
-          >
-            {t("projects")}
-          </a>
-        </motion.div>
-        <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-          <a
-            href="#contact"
-            className={`cursor-pointer transition-all duration-300 ${
-              mode === "light"
-                ? "text-grisOscuro hover:text-dorado focus:text-dorado"
-                : "text-doradoClaro hover:text-dorado focus:text-dorado"
-            } focus:outline-none focus:underline`}
-          >
-            {t("contact")}
-          </a>
-        </motion.div>
-      </div>
+
+      {/* Condicional para mostrar los enlaces solo si no estamos en la ruta /about */}
+      {location.pathname !== "/about" && (
+        <div className="hidden md:flex items-center gap-8 font-semibold">
+          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+            <a
+              href="#aboutMeSection"
+              className={`cursor-pointer transition-all duration-300 ${
+                mode === "light"
+                  ? "text-grisOscuro hover:text-dorado focus:text-dorado"
+                  : "text-textWhite hover:text-dorado focus:text-dorado"
+              } focus:outline-none focus:underline`}
+            >
+              {t("about")}
+            </a>
+          </motion.div>
+          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+            <a
+              href="#techs"
+              className={`cursor-pointer transition-all duration-300 ${
+                mode === "light"
+                  ? "text-grisOscuro hover:text-dorado focus:text-dorado"
+                  : "text-textWhite hover:text-dorado focus:text-dorado"
+              } focus:outline-none focus:underline`}
+            >
+              {t("services")}
+            </a>
+          </motion.div>
+          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+            <a
+              href="#projects"
+              className={`cursor-pointer transition-all duration-300 ${
+                mode === "light"
+                  ? "text-grisOscuro hover:text-dorado focus:text-dorado"
+                  : "text-textWhite hover:text-dorado focus:text-dorado"
+              } focus:outline-none focus:underline`}
+            >
+              {t("projects")}
+            </a>
+          </motion.div>
+          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+            <a
+              href="#contact"
+              className={`cursor-pointer transition-all duration-300 ${
+                mode === "light"
+                  ? "text-grisOscuro hover:text-dorado focus:text-dorado"
+                  : "text-textWhite hover:text-dorado focus:text-dorado"
+              } focus:outline-none focus:underline`}
+            >
+              {t("contact")}
+            </a>
+          </motion.div>
+        </div>
+      )}
+
       <div className="flex items-center gap-4">
         {/* Botón Back solo en /about */}
         {location.pathname === "/about" && (
@@ -112,6 +116,7 @@ export const Navbar = ({ mode, toggleMode }) => {
             </Link>
           </motion.div>
         )}
+
         {/* Selector de idioma */}
         <motion.div
           className="relative"
@@ -140,7 +145,7 @@ export const Navbar = ({ mode, toggleMode }) => {
                     className={`w-full px-4 py-2 text-left ${
                       mode === "light"
                         ? "text-grisOscuro hover:bg-white hover:text-dorado"
-                        : "text-doradoClaro hover:bg-grisOscuro hover:text-dorado"
+                        : "text-textWhite hover:bg-grisOscuro hover:text-dorado"
                     } transition-colors duration-300`}
                     onClick={() => {
                       setLanguage(lang);
@@ -157,6 +162,7 @@ export const Navbar = ({ mode, toggleMode }) => {
             )}
           </AnimatePresence>
         </motion.div>
+
         {/* Selector de modo claro/oscuro */}
         <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
           {mode === "dark" ? (

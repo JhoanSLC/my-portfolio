@@ -1,18 +1,21 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Navbar } from "./Navbar";
-import { HeroSection } from "./HeroSection";
-import { AboutMeSection } from "./AboutMeSection";
-import { LanguageProvider } from "./LanguageContext";
+import { Navbar } from "../components/Navbar";
+import { HeroSection } from "../components/HeroSection";
+import { AboutMeSection } from "../components/AboutMeSection";
+import { LanguageProvider } from "../components/LanguageContext";
+import { MissionVisionSection } from "../components/MissionVisionSection";
+import { AboutHeroSection } from "../components/AboutHeroSection";
 
 export const AboutPage = () => {
   const [mode, setMode] = useState("dark");
 
   useEffect(() => {
-    const savedMode = localStorage.getItem("mode");
-    if (savedMode) {
-      setMode(savedMode);
+    if (!localStorage.getItem("mode")) {
+      localStorage.setItem("mode", mode); // Guarda el modo seleccionado
+    } else {
+      setMode(localStorage.getItem("mode")); // Carga el modo guardado al inicializar la página
     }
   }, []);
 
@@ -37,8 +40,7 @@ export const AboutPage = () => {
           }`}
         >
           <Navbar mode={mode} toggleMode={toggleMode} />
-          <HeroSection mode={mode} />
-          <AboutMeSection mode={mode} />
+          <AboutHeroSection mode={mode} />
         </motion.div>
       </AnimatePresence>
     </LanguageProvider>

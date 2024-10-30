@@ -1,9 +1,12 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Navbar } from "./components/Navbar";
-import { HeroSection } from "./components/HeroSection";
-import { AboutMeSection } from "./components/AboutMeSection";
-import { LanguageProvider } from "./components/LanguageContext";
+import { Navbar } from "../components/Navbar";
+import { HeroSection } from "../components/HeroSection";
+import { AboutMeSection } from "../components/AboutMeSection";
+import { LanguageProvider } from "../components/LanguageContext";
+import { TechnologiesSection } from "../components/TechnologiesSection";
+import { ProjectsSection } from "../components/ProjectsSection";
+import { ContactSection } from "../components/ContactSection";
 
 function App() {
   const [mode, setMode] = useState("dark");
@@ -39,6 +42,9 @@ function App() {
           <Navbar mode={mode} toggleMode={toggleMode} />
           <HeroSection mode={mode} />
           <AboutMeSection mode={mode} />
+          <TechnologiesSection mode={mode} />
+          <ProjectsSection mode={mode} />
+          <ContactSection mode={mode} />
         </motion.div>
       </AnimatePresence>
     </LanguageProvider>
